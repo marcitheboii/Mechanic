@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata.Ecma335;
 using System.Text.Json.Serialization;
 
@@ -34,7 +35,7 @@ namespace Autoszerelo.Model
 		[Required]
 		public Allapot Allapot { get; set; } = Allapot.felvett_munka;
 
-		[HiddenInput]
+		[ForeignKey("UgyfelId")]
 		public Ugyfel Ugyfel { get; set; }
 
     }

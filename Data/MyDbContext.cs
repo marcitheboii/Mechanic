@@ -10,8 +10,8 @@ namespace Autoszerelo.Data
 
 		}
 
-		public DbSet<Munka> Munkak { get; set; }
 		public DbSet<Ugyfel> Ugyfelek { get; set; }
+		public DbSet<Munka> Munkak { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
