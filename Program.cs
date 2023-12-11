@@ -1,5 +1,6 @@
 global using Autoszerelo.Model;
 global using Autoszerelo.Services.MunkaService;
+using Autoszerelo.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IMunkaService, MunkaService>();
+builder.Services.AddDbContext<MunkaDbContext>();
 
 var app = builder.Build();
 
