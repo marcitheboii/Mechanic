@@ -26,5 +26,12 @@ namespace Autoszerelo.Services.MunkaService
 		{
 			return munkak.FirstOrDefault(c => c.Id == id);
 		}
+
+		public List<Munka> RemoveMunka(Munka regimunka)
+		{
+			munkak.Remove(regimunka);
+
+			return munkak;
+		}
 	}
 }

@@ -7,5 +7,7 @@
 		Munka GetMunkaById(int id);
 
 		List<Munka> AddMunka(Munka ujmunka);
+
+		List<Munka> RemoveMunka(Munka regimunka);
 	}
 }

@@ -51,5 +51,18 @@ namespace Autoszerelo.Controllers
 
 			return Ok(munka);
 		}
+
+		[HttpDelete("{id}")]
+		public ActionResult<List<Munka>> RemoveMunka(int id,Munka munka)
+		{
+			var regimunka = _munkaService.GetMunkaById(id);
+
+			if(regimunka == null)
+			{
+				return NotFound("Nincs ilyen munka");
+			}
+
+			return Ok(_munkaService.RemoveMunka(regimunka));
+		}
 	}
 }
