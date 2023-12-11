@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Autoszerelo.Data.Migrations
+namespace Autoszerelo.Data.Migrations.Munkak
 {
     [DbContext(typeof(MunkaDbContext))]
     partial class MunkaDbContextModelSnapshot : ModelSnapshot

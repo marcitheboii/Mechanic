@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Autoszerelo.Data.Migrations
+namespace Autoszerelo.Data.Migrations.Munkak
 {
     /// <inheritdoc />
     public partial class createdatabase : Migration

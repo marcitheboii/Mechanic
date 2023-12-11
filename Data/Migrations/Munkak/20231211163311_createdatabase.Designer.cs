@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Autoszerelo.Data.Migrations
+namespace Autoszerelo.Data.Migrations.Munkak
 {
     [DbContext(typeof(MunkaDbContext))]
-    [Migration("20231211161632_createdatabase")]
+    [Migration("20231211163311_createdatabase")]
     partial class createdatabase
     {
         /// <inheritdoc />
