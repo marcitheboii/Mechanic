@@ -6,12 +6,18 @@ namespace Autoszerelo.Controllers
 	[Route("api/[controller]")]
 	public class AutoszereloController : ControllerBase
 	{
-		private static readonly Munka munka = new();
+		private static List<Munka> munkak = new();
+
+		[HttpGet("GetAll")]
+		public ActionResult<List<Munka>> Get()
+		{
+			return Ok(munkak);
+		}
 
 		[HttpGet]
-		public ActionResult<Munka> Get()
+		public ActionResult<Munka> GetSingle()
 		{
-			return Ok(munka);
+			return Ok(munkak[0]);
 		}
 	}
 }
