@@ -1,6 +1,8 @@
 global using Autoszerelo.Model;
 global using Autoszerelo.Services.MunkaService;
+global using Autoszerelo.Services.UgyfelService;
 global using Autoszerelo.Data;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +13,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IMunkaService, MunkaService>();
+builder.Services.AddScoped<IUgyfelService, UgyfelService>();
 builder.Services.AddDbContext<MyDbContext>();
+builder.Services.AddControllers()
+	.AddJsonOptions(options =>
+	{
+		options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+	});
 
 var app = builder.Build();
 
