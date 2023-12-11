@@ -33,6 +33,8 @@ namespace Autoszerelo.Model
 		[Required]
 		public Allapot Allapot { get; set; } = Allapot.felvett_munka;
 
+		public Ugyfel Ugyfel { get; set; }
+
     }
 
 	[JsonConverter(typeof(JsonStringEnumConverter))]

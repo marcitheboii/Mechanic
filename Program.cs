@@ -11,8 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IMunkaService, MunkaService>();
-builder.Services.AddDbContext<MunkaDbContext>();
-builder.Services.AddDbContext<UgyfelDbContext>();
+builder.Services.AddDbContext<MyDbContext>();
 
 var app = builder.Build();
 
