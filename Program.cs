@@ -1,6 +1,6 @@
 global using Autoszerelo.Model;
 global using Autoszerelo.Services.MunkaService;
-using Autoszerelo.Data;
+global using Autoszerelo.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

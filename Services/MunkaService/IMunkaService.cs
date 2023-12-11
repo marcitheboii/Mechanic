@@ -2,12 +2,13 @@
 {
 	public interface IMunkaService
 	{
-		List<Munka> GetAllMunka();
+		Task<List<Munka>> GetAllMunka();
 
-		Munka GetMunkaById(int id);
+		Task<Munka> GetSingleMunka(int id);
 
-		List<Munka> AddMunka(Munka ujmunka);
+		Task<List<Munka>> AddMunka(Munka munka);
 
-		List<Munka> RemoveMunka(Munka regimunka);
+		Task<List<Munka>?> UpdateMunka(int id, Munka request);
+		Task<List<Munka>?> DeleteMunka(int id);
 	}
 }

@@ -6,41 +6,64 @@ namespace Autoszerelo.Services.MunkaService
 {
 	public class MunkaService : IMunkaService
 	{
-		private static List<Munka> munkak = new List<Munka> {
-			new Munka{ Id=1, Kategoria = Kategoria.fekberendezes, Rendszam="NUY-959"},
-			new Munka{ Id=2, Kategoria = Kategoria.motor,Rendszam="MCU-859"}
-	};
-		/*
-		private readonly DataContext _context;
+		private readonly MyDbContext _context;
 
-        public MunkaService(DataContext context)
-        {
-            _context = context;
-        }
-		*/
-
-        public List<Munka> AddMunka(Munka ujmunka)
+		public MunkaService(MyDbContext context)
 		{
-			munkak.Add(ujmunka);
+			_context = context;
+		}
 
+		public async Task<List<Munka>> AddMunka(Munka munka)
+		{
+			_context.Munkak.Add(munka);
+			await _context.SaveChangesAsync();
+			return await _context.Munkak.ToListAsync();
+		}
+
+		public async Task<List<Munka>?> DeleteMunka(int id)
+		{
+			var munka = await _context.Munkak.FindAsync(id);
+			if (munka is null)
+				return null;
+
+			_context.Munkak.Remove(munka);
+			await _context.SaveChangesAsync();
+
+			return await _context.Munkak.ToListAsync();
+		}
+
+		public async Task<List<Munka>> GetAllMunka()
+		{
+			var munkak = await _context.Munkak.ToListAsync();
 			return munkak;
 		}
 
-		public List<Munka> GetAllMunka()
+		public async Task<Munka?> GetSingleMunka(int id)
 		{
-			return munkak;
+			var munka = await _context.Munkak.FindAsync(id);
+			if (munka is null)
+				return null;
+
+			return munka;
 		}
 
-		public Munka GetMunkaById(int id)
+		public async Task<List<Munka>?> UpdateMunka(int id, Munka request)
 		{
-			return munkak.FirstOrDefault(c => c.Id == id);
-		}
+			var munka = await _context.Munkak.FindAsync(id);
+			if (munka is null)
+				return null;
 
-		public List<Munka> RemoveMunka(Munka regimunka)
-		{
-			munkak.Remove(regimunka);
+			munka.UgyfelId = request.UgyfelId;
+			munka.Rendszam = request.Rendszam;
+			munka.GyartasiEv = request.GyartasiEv;
+			munka.Kategoria = request.Kategoria;
+			munka.HibaLeiras = request.HibaLeiras;
+			munka.HibaSulyossag = request.HibaSulyossag;
+			munka.Allapot = request.Allapot;
 
-			return munkak;
+			await _context.SaveChangesAsync();
+
+			return await _context.Munkak.ToListAsync();
 		}
 	}
 }

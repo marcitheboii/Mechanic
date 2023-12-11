@@ -4,65 +4,56 @@ namespace Autoszerelo.Controllers
 {
 	[ApiController]
 	[Route("api/[controller]")]
-	public class AutoszereloController : ControllerBase
+	public class MunkaController : ControllerBase
 	{
-		private readonly IMunkaService _munkaService;
+		private readonly IMunkaService _munkaservice;
 
-		public AutoszereloController(IMunkaService munkaService)
-        {
-			_munkaService = munkaService;
+		public MunkaController(IMunkaService munkaService)
+		{
+			_munkaservice = munkaService;
 		}
 
-        [HttpGet("GetAll")]
-		public ActionResult<List<Munka>> Get()
+		[HttpGet]
+		public async Task<ActionResult<List<Munka>>> GetAllHeroes()
 		{
-			return Ok(_munkaService.GetAllMunka());
+			return await _munkaservice.GetAllMunka();
 		}
 
 		[HttpGet("{id}")]
-		public ActionResult<Munka> GetSingle(int id)
+		public async Task<ActionResult<Munka>> GetSingleHero(int id)
 		{
-			return Ok(_munkaService.GetMunkaById(id));
+			var result = await _munkaservice.GetSingleMunka(id);
+			if (result is null)
+				return NotFound("Munka not found.");
+
+			return Ok(result);
 		}
 
 		[HttpPost]
-		public ActionResult<List<Munka>> AddMunka(Munka ujmunka)
+		public async Task<ActionResult<List<Munka>>> AddHero(Munka hero)
 		{
-			return Ok(_munkaService.AddMunka(ujmunka));
+			var result = await _munkaservice.AddMunka(hero);
+			return Ok(result);
 		}
 
 		[HttpPut("{id}")]
-		public ActionResult<List<Munka>> UpdateMunka(int id,Munka request)
+		public async Task<ActionResult<List<Munka>>> UpdateHero(int id, Munka request)
 		{
-			var munka = _munkaService.GetMunkaById(id);
+			var result = await _munkaservice.UpdateMunka(id, request);
+			if (result is null)
+				return NotFound("Munka not found.");
 
-			if(munka == null)
-			{
-				return NotFound("Nincs ilyen munka");
-			}
-
-			munka.UgyfelId = request.UgyfelId;
-			munka.Rendszam = request.Rendszam;
-			munka.GyartasiEv = request.GyartasiEv;
-			munka.Kategoria = request.Kategoria;
-			munka.HibaLeiras = request.HibaLeiras;
-			munka.HibaSulyossag = request.HibaSulyossag;
-			munka.Allapot = request.Allapot;
-
-			return Ok(munka);
+			return Ok(result);
 		}
 
 		[HttpDelete("{id}")]
-		public ActionResult<List<Munka>> RemoveMunka(int id,Munka munka)
+		public async Task<ActionResult<List<Munka>>> DeleteHero(int id)
 		{
-			var regimunka = _munkaService.GetMunkaById(id);
+			var result = await _munkaservice.DeleteMunka(id);
+			if (result is null)
+				return NotFound("Munka not found.");
 
-			if(regimunka == null)
-			{
-				return NotFound("Nincs ilyen munka");
-			}
-
-			return Ok(_munkaService.RemoveMunka(regimunka));
+			return Ok(result);
 		}
 	}
 }
