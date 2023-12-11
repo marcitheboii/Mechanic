@@ -6,7 +6,10 @@ namespace Autoszerelo.Controllers
 	[Route("api/[controller]")]
 	public class AutoszereloController : ControllerBase
 	{
-		private static List<Munka> munkak = new();
+		private static List<Munka> munkak = new List<Munka> {
+			new Munka(),
+			new Munka{ Id=1, Kategoria = Kategoria.fekberendezes}
+		};
 
 		[HttpGet("GetAll")]
 		public ActionResult<List<Munka>> Get()
@@ -14,10 +17,18 @@ namespace Autoszerelo.Controllers
 			return Ok(munkak);
 		}
 
-		[HttpGet]
-		public ActionResult<Munka> GetSingle()
+		[HttpGet("{id}")]
+		public ActionResult<Munka> GetSingle(int id)
 		{
-			return Ok(munkak[0]);
+			return Ok(munkak.FirstOrDefault(c => c.Id == id));
+		}
+
+		[HttpPost]
+		public ActionResult<List<Munka>> AddMunka(Munka ujmunka)
+		{
+			munkak.Add(ujmunka);
+
+			return Ok(munkak);
 		}
 	}
 }
