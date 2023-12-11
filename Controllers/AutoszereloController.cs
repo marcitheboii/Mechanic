@@ -30,5 +30,26 @@ namespace Autoszerelo.Controllers
 		{
 			return Ok(_munkaService.AddMunka(ujmunka));
 		}
+
+		[HttpPut("{id}")]
+		public ActionResult<List<Munka>> UpdateMunka(int id,Munka request)
+		{
+			var munka = _munkaService.GetMunkaById(id);
+
+			if(munka == null)
+			{
+				return NotFound("Nincs ilyen munka");
+			}
+
+			munka.UgyfelId = request.UgyfelId;
+			munka.Rendszam = request.Rendszam;
+			munka.GyartasiEv = request.GyartasiEv;
+			munka.Kategoria = request.Kategoria;
+			munka.HibaLeiras = request.HibaLeiras;
+			munka.HibaSulyossag = request.HibaSulyossag;
+			munka.Allapot = request.Allapot;
+
+			return Ok(munka);
+		}
 	}
 }

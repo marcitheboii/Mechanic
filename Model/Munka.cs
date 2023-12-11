@@ -11,10 +11,10 @@ namespace Autoszerelo.Model
 		public int Id { get; set; }
 
 		[Required]
-		public int UgyfelId { get; set; }
+		public int UgyfelId { get; set; } = 0;
 
 		[Required]
-		public string Rendszam { get; set; }
+		public string Rendszam { get; set; } = "XXX-YYY";
 
 		[Required]
 		[Range(typeof(DateTime), "1990-01-01", "9999-01-01")]
@@ -24,14 +24,14 @@ namespace Autoszerelo.Model
 		public Kategoria Kategoria { get; set; }
 
 		[Required]
-		public string HibaLeiras { get; set; }
+		public string HibaLeiras { get; set; } = string.Empty;
 
 		[Required]
-		[Range(1,10)]
-		public int HibaSulyossag { get; set; }
+		[Range(1, 10)]
+		public int HibaSulyossag { get; set; } = 1;
 
 		[Required]
-		public Allapot Allapot { get; set; }
+		public Allapot Allapot { get; set; } = Allapot.felvett_munka;
 
     }
 

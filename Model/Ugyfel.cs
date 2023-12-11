@@ -8,13 +8,13 @@ namespace Autoszerelo.Model
         public int Id { get; set; }
 
 		[Required]
-		public string Nev { get; set; }
+		public string Nev { get; set; } = string.Empty;
 
 		[Required]
-		public string Lakcim { get; set; }
+		public string Lakcim { get; set; } = string.Empty;
 
 		[Required]
 		[EmailAddress]
-        public string Email { get; set; }
+		public string Email { get; set; } = string.Empty;
     }
 }
