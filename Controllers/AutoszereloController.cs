@@ -6,29 +6,29 @@ namespace Autoszerelo.Controllers
 	[Route("api/[controller]")]
 	public class AutoszereloController : ControllerBase
 	{
-		private static List<Munka> munkak = new List<Munka> {
-			new Munka(),
-			new Munka{ Id=1, Kategoria = Kategoria.fekberendezes}
-		};
+		private readonly IMunkaService _munkaService;
 
-		[HttpGet("GetAll")]
+		public AutoszereloController(IMunkaService munkaService)
+        {
+			_munkaService = munkaService;
+		}
+
+        [HttpGet("GetAll")]
 		public ActionResult<List<Munka>> Get()
 		{
-			return Ok(munkak);
+			return Ok(_munkaService.GetAllMunka);
 		}
 
 		[HttpGet("{id}")]
 		public ActionResult<Munka> GetSingle(int id)
 		{
-			return Ok(munkak.FirstOrDefault(c => c.Id == id));
+			return Ok(_munkaService.GetMunkaById(id));
 		}
 
 		[HttpPost]
 		public ActionResult<List<Munka>> AddMunka(Munka ujmunka)
 		{
-			munkak.Add(ujmunka);
-
-			return Ok(munkak);
+			return Ok(_munkaService.AddMunka(ujmunka));
 		}
 	}
 }
