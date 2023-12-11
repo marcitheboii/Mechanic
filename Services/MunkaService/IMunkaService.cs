@@ -9,6 +9,7 @@
 		Task<List<Munka>> AddMunka(Munka munka);
 
 		Task<List<Munka>?> UpdateMunka(int id, Munka request);
+
 		Task<List<Munka>?> DeleteMunka(int id);
 	}
 }

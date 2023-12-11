@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Autoszerelo.Model
 {
@@ -17,6 +18,7 @@ namespace Autoszerelo.Model
 		[EmailAddress]
 		public string Email { get; set; } = string.Empty;
 
+		[HiddenInput]
 		public ICollection<Munka> Munkak { get; set; }
     }
 }

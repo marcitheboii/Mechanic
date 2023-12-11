@@ -14,13 +14,13 @@ namespace Autoszerelo.Controllers
 		}
 
 		[HttpGet]
-		public async Task<ActionResult<List<Munka>>> GetAllHeroes()
+		public async Task<ActionResult<List<Munka>>> GetAllMunka()
 		{
 			return await _munkaservice.GetAllMunka();
 		}
 
 		[HttpGet("{id}")]
-		public async Task<ActionResult<Munka>> GetSingleHero(int id)
+		public async Task<ActionResult<Munka>> GetSingleMunka(int id)
 		{
 			var result = await _munkaservice.GetSingleMunka(id);
 			if (result is null)
@@ -30,14 +30,14 @@ namespace Autoszerelo.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult<List<Munka>>> AddHero(Munka hero)
+		public async Task<ActionResult<List<Munka>>> AddMunka(Munka munka)
 		{
-			var result = await _munkaservice.AddMunka(hero);
+			var result = await _munkaservice.AddMunka(munka);
 			return Ok(result);
 		}
 
 		[HttpPut("{id}")]
-		public async Task<ActionResult<List<Munka>>> UpdateHero(int id, Munka request)
+		public async Task<ActionResult<List<Munka>>> UpdateMunka(int id, Munka request)
 		{
 			var result = await _munkaservice.UpdateMunka(id, request);
 			if (result is null)
@@ -47,7 +47,7 @@ namespace Autoszerelo.Controllers
 		}
 
 		[HttpDelete("{id}")]
-		public async Task<ActionResult<List<Munka>>> DeleteHero(int id)
+		public async Task<ActionResult<List<Munka>>> DeleteMunka(int id)
 		{
 			var result = await _munkaservice.DeleteMunka(id);
 			if (result is null)
