@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection.Metadata.Ecma335;
+using System.Text.Json.Serialization;
 
 namespace Autoszerelo.Model
 {
@@ -34,6 +35,7 @@ namespace Autoszerelo.Model
 
     }
 
+	[JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Kategoria
     {
 		karosszeria,
@@ -42,7 +44,8 @@ namespace Autoszerelo.Model
         fekberendezes
 	}
 
-    public enum Allapot
+	[JsonConverter(typeof(JsonStringEnumConverter))]
+	public enum Allapot
     {
         felvett_munka,
         elvegzes_alatt,

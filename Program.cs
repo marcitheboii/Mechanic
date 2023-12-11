@@ -1,6 +1,4 @@
 global using Autoszerelo.Model;
-
-using Autoszerelo.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
