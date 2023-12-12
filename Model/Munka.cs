@@ -13,14 +13,13 @@ namespace Autoszerelo.Model
 		public int Id { get; set; }
 
 		[Required]
-		public int UgyfelId { get; set; } = 0;
+		[RegularExpression(@"^(?![\s!?_\-:;#])^[A-Z]{3}-\d{3}$")]
+
+		public string Rendszam { get; set; } = "XXX-111";
 
 		[Required]
-		public string Rendszam { get; set; } = "XXX-YYY";
-
-		[Required]
-		[Range(typeof(DateTime), "1990-01-01", "9999-01-01")]
-		public DateTime GyartasiEv { get; set; }
+		[Range(1900, 2023)]
+		public int GyartasiEv { get; set; }
 
 		[Required]
 		public Kategoria Kategoria { get; set; }
@@ -35,10 +34,21 @@ namespace Autoszerelo.Model
 		[Required]
 		public Allapot Allapot { get; set; } = Allapot.felvett_munka;
 
-		[ForeignKey("UgyfelId")]
+		[Required]
+		public int UgyfelId { get; set; } = 0;
+
 		public Ugyfel Ugyfel { get; set; }
 
-    }
+		public double? EstimatedValue
+		{
+			get
+			{
+				var temp = new EstimateTime();
+				return temp.calculate(this.Kategoria,this.GyartasiEv,this.HibaSulyossag);
+			}
+		}
+
+	}
 
 	[JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Kategoria
@@ -55,8 +65,5 @@ namespace Autoszerelo.Model
         felvett_munka,
         elvegzes_alatt,
         befejezett
-
     }
-
-
 }

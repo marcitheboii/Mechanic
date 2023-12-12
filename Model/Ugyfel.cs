@@ -18,6 +18,6 @@ namespace Autoszerelo.Model
 		[EmailAddress]
 		public string Email { get; set; } = string.Empty;
 
-		public ICollection<Munka>? Munkak { get; set; } = new List<Munka>();
-	}
+		public List<Munka>? Munkak { get; set; }
+    }
 }

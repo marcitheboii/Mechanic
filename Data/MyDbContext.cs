@@ -9,7 +9,6 @@ namespace Autoszerelo.Data
 		{
 
 		}
-
 		public DbSet<Ugyfel> Ugyfelek { get; set; }
 		public DbSet<Munka> Munkak { get; set; }
 
@@ -17,17 +16,6 @@ namespace Autoszerelo.Data
 		{
 			base.OnConfiguring(optionsBuilder);
 			optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=true;TrustServerCertificate=True;");
-		}
-
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
-		{
-			base.OnModelCreating(modelBuilder);
-
-
-			modelBuilder.Entity<Munka>()
-				.HasOne(b => b.Ugyfel)
-				.WithMany(a => a.Munkak)
-				.HasForeignKey(b => b.UgyfelId);
 		}
 	}
 }
